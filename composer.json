@@ -1,0 +1,52 @@
+{
+    "name": "pealmeida/php-helpers",
+    "description": "Biblioteca que contem helpers para projetos PHP",
+    "keywords": [
+        "PHP",
+        "helpers",
+        "laravel-helpers",
+        "php-helpers",
+        "LARAVEL",
+        "HELPER"
+    ],
+    "config": {
+        "platform": {
+            "php" : "8.0.99"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "homepage": "https://github.com/Dih560/php-helpers",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Diego Almeida",
+            "email": "diego.pealmeida@outlook.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-ctype": "*",
+        "ext-dom": "*",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "ext-iconv": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-simplexml": "*",
+        "ext-xml": "*",
+        "ext-xmlreader": "*",
+        "ext-xmlwriter": "*",
+        "ext-zip": "*",
+        "ext-zlib": "*",
+        "phpoffice/phpspreadsheet": "^2.0.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
