@@ -28,7 +28,7 @@ if (!function_exists('formatCpf')) {
      * @access public
      * @return string
      */
-    function formatCpf($value, bool $onlyNumber = true) :string
+    function formatCpf($value, bool $onlyNumber = true): string
     {
         if ($onlyNumber) {
             $value = onlyNumber($value);
@@ -37,7 +37,7 @@ if (!function_exists('formatCpf')) {
         $value = substr($value, 0, 11);
 
         if (strlen($value) == 11) {
-            return substr($value, 0, 3).'.'.substr($value, 3, 3).'.'.substr($value, 6, 3).'-'.substr($value, 9, 2);
+            return substr($value, 0, 3) . '.' . substr($value, 3, 3) . '.' . substr($value, 6, 3) . '-' . substr($value, 9, 2);
         }
 
         return $value;
@@ -53,7 +53,7 @@ if (!function_exists('formatCnpj')) {
      * @access public
      * @return string
      */
-    function formatCnpj($value, bool $onlyNumber = true) :string
+    function formatCnpj($value, bool $onlyNumber = true): string
     {
         if ($onlyNumber) {
             $value = onlyNumber($value);
@@ -62,7 +62,7 @@ if (!function_exists('formatCnpj')) {
         $value = substr($value, 0, 14);
 
         if (strlen($value) == 14) {
-            return substr($value, 0, 2).'.'.substr($value, 2, 3).'.'.substr($value, 5, 3).'/'.substr($value, 8, 4).'-'.substr($value, 12, 2);
+            return substr($value, 0, 2) . '.' . substr($value, 2, 3) . '.' . substr($value, 5, 3) . '/' . substr($value, 8, 4) . '-' . substr($value, 12, 2);
         }
 
         return $value;
@@ -78,7 +78,7 @@ if (!function_exists('formatCpfCnpj')) {
      * @access public
      * @return string
      */
-    function formatCpfCnpj($value, bool $onlyNumber = true) :string
+    function formatCpfCnpj($value, bool $onlyNumber = true): string
     {
         if ($onlyNumber) {
             $value = onlyNumber($value);
@@ -101,16 +101,16 @@ if (!function_exists('formatPhone')) {
      * @access public
      * @return string
      */
-    function formatPhone($value) :string
+    function formatPhone($value): string
     {
         $value = onlyNumber($value);
         $value = substr($value, 0, 11);
 
         if (strlen($value) >= 10) {
             if (strlen($value) == 11) {
-                return '('.substr($value, 0, 2).') '.substr($value, 2, 5).'-'.substr($value, 7, 4);
+                return '(' . substr($value, 0, 2) . ') ' . substr($value, 2, 5) . '-' . substr($value, 7, 4);
             } else {
-                return '('.substr($value, 0, 2).') '.substr($value, 2, 4).'-'.substr($value, 6, 4);
+                return '(' . substr($value, 0, 2) . ') ' . substr($value, 2, 4) . '-' . substr($value, 6, 4);
             }
         }
 
@@ -127,13 +127,13 @@ if (!function_exists('formatPostalCode')) {
      * @access public
      * @return string
      */
-    function formatPostalCode($value) :string
+    function formatPostalCode($value): string
     {
         $value = onlyNumber($value);
         $value = substr($value, 0, 8);
 
         if (strlen($value) == 8) {
-            return substr($value, 0, 5).'-'.substr($value, 5, 3);
+            return substr($value, 0, 5) . '-' . substr($value, 5, 3);
         }
 
         return $value;
@@ -149,11 +149,11 @@ if (!function_exists('removeAccent')) {
      * @access public
      * @return string
      */
-    function removeAccent(string $value) :string
+    function removeAccent(string $value): string
     {
         return preg_replace(
-            ["/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/", "/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/"],
-            explode(" ","a A e E i I o O u U n N"),
+            ["/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ẽ|ë)/", "/(É|È|Ê|Ẽ|Ë)/", "/(í|ì|î|ĩ|ï)/", "/(Í|Ì|Î|Ĩ|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/", "/(ú|ù|û|ũ|ü)/", "/(Ú|Ù|Û|Ũ|Ü)/", "/(ć|ĉ|ç|ḉ)/", "/(Ć|Ĉ|Ç|Ḉ)/", "/(ń|ǹ|ñ)/", "/(Ń|Ǹ|Ñ)/"],
+            explode(" ", "a A e E i I o O u U c C n N"),
             $value
         );
     }
@@ -168,7 +168,7 @@ if (!function_exists('formatToFilename')) {
      * @access public
      * @return string
      */
-    function formatToFilename(string $value) :string
+    function formatToFilename(string $value): string
     {
         $value = removeAccent($value);
         $value = mb_strtolower($value, 'UTF-8');
@@ -196,7 +196,7 @@ if (!function_exists('formatRealToFloat')) {
      * @access public
      * @return float
      */
-    function formatRealToFloat($value, int $precision = 2) :float
+    function formatRealToFloat($value, int $precision = 2): float
     {
         return (float)number_format((float)preg_replace(['/[^0-9,-]/', '/[,]/'], ['', '.'], $value), $precision, '.', '');
     }
@@ -212,7 +212,7 @@ if (!function_exists('formatStringToFloat')) {
      * @access public
      * @return float
      */
-    function formatStringToFloat($value, int $precision = 2) :float
+    function formatStringToFloat($value, int $precision = 2): float
     {
         $a = strripos($value, ',');
         $b = strripos($value, '.');
@@ -235,9 +235,9 @@ if (!function_exists('formatFloatToReal')) {
      * @access public
      * @return string
      */
-    function formatFloatToReal($value, int $precision = 2) :string
+    function formatFloatToReal($value, int $precision = 2): string
     {
-        return 'R$ '.number_format((float)preg_replace(['/[^0-9.-]/'], [''], $value), $precision, ',', '.');
+        return 'R$ ' . number_format((float)preg_replace(['/[^0-9.-]/'], [''], $value), $precision, ',', '.');
     }
 }
 
@@ -251,7 +251,7 @@ if (!function_exists('formatFloatToValue')) {
      * @access public
      * @return string
      */
-    function formatFloatToValue($value, int $precision = 2) :string
+    function formatFloatToValue($value, int $precision = 2): string
     {
         return number_format((float)preg_replace(['/[^0-9.-]/'], [''], $value), $precision, ',', '.');
     }
@@ -263,23 +263,24 @@ if (!function_exists('formatDigitableLine')) {
      *
      * @param $value Valor a ser formatado
      */
-    function formatDigitableLine($value) {
+    function formatDigitableLine($value)
+    {
         $oldValue = substr(onlyNumber($value), 0, 48);
         $value = '';
         if (strlen($oldValue) >= 34) {
-          $value = substr($oldValue, 0, 5).".".substr($oldValue, 5, 5)." ".substr($oldValue, 10, 5).".".substr($oldValue, 15, 6)." ".substr($oldValue, 21, 5).".".substr($oldValue, 26, 6)." ".substr($oldValue, 32, 1)." ".substr($oldValue, 33);
+            $value = substr($oldValue, 0, 5) . "." . substr($oldValue, 5, 5) . " " . substr($oldValue, 10, 5) . "." . substr($oldValue, 15, 6) . " " . substr($oldValue, 21, 5) . "." . substr($oldValue, 26, 6) . " " . substr($oldValue, 32, 1) . " " . substr($oldValue, 33);
         } else if (strlen($oldValue) >= 33) {
-            $value = substr($oldValue, 0, 5).".".substr($oldValue, 5, 5)." ".substr($oldValue, 10, 5).".".substr($oldValue, 15, 6)." ".substr($oldValue, 21, 5).".".substr($oldValue, 26, 6)." ".substr($oldValue, 32, 1);
+            $value = substr($oldValue, 0, 5) . "." . substr($oldValue, 5, 5) . " " . substr($oldValue, 10, 5) . "." . substr($oldValue, 15, 6) . " " . substr($oldValue, 21, 5) . "." . substr($oldValue, 26, 6) . " " . substr($oldValue, 32, 1);
         } else if (strlen($oldValue) >= 27) {
-            $value = substr($oldValue, 0, 5).".".substr($oldValue, 5, 5)." ".substr($oldValue, 10, 5).".".substr($oldValue, 15, 6)." ".substr($oldValue, 21, 5).".".substr($oldValue, 26, 6);
+            $value = substr($oldValue, 0, 5) . "." . substr($oldValue, 5, 5) . " " . substr($oldValue, 10, 5) . "." . substr($oldValue, 15, 6) . " " . substr($oldValue, 21, 5) . "." . substr($oldValue, 26, 6);
         } else if (strlen($oldValue) >= 22) {
-            $value = substr($oldValue, 0, 5).".".substr($oldValue, 5, 5)." ".substr($oldValue, 10, 5).".".substr($oldValue, 15, 6)." ".substr($oldValue, 21, 5);
+            $value = substr($oldValue, 0, 5) . "." . substr($oldValue, 5, 5) . " " . substr($oldValue, 10, 5) . "." . substr($oldValue, 15, 6) . " " . substr($oldValue, 21, 5);
         } else if (strlen($oldValue) >= 16) {
-            $value = substr($oldValue, 0, 5).".".substr($oldValue, 5, 5)." ".substr($oldValue, 10, 5).".".substr($oldValue, 15, 6);
+            $value = substr($oldValue, 0, 5) . "." . substr($oldValue, 5, 5) . " " . substr($oldValue, 10, 5) . "." . substr($oldValue, 15, 6);
         } else if (strlen($oldValue) >= 11) {
-            $value = substr($oldValue, 0, 5).".".substr($oldValue, 5, 5)." ".substr($oldValue, 10, 5);
+            $value = substr($oldValue, 0, 5) . "." . substr($oldValue, 5, 5) . " " . substr($oldValue, 10, 5);
         } else if (strlen($oldValue) >= 6) {
-            $value = substr($oldValue, 0, 5).".".substr($oldValue, 5, 5);
+            $value = substr($oldValue, 0, 5) . "." . substr($oldValue, 5, 5);
         } else {
             $value = substr($oldValue, 0, 5);
         }
@@ -297,7 +298,7 @@ if (!function_exists('dateEnToBr')) {
      * @access public
      * @return string
      */
-    function dateEnToBr($date) :string
+    function dateEnToBr($date): string
     {
         $date = explode(' ', $date);
 
@@ -324,7 +325,8 @@ if (!function_exists('dateBrToEn')) {
      * @access public
      * @return string
      */
-    function dateBrToEn($date) {
+    function dateBrToEn($date)
+    {
         $date = explode(' ', $date);
 
         $date[0] = explode('/', $date[0]);
@@ -353,7 +355,7 @@ if (!function_exists('dateDiff')) {
      * @access public
      * @return string
      */
-    function dateDiff(string $dateOne, string $dateTwo, int $increment = 0, string $type = 'M') :string
+    function dateDiff(string $dateOne, string $dateTwo, int $increment = 0, string $type = 'M'): string
     {
         $diff = 0;
         switch ($type) {
@@ -405,7 +407,7 @@ if (!function_exists('isJson')) {
      * @access public
      * @return bool
      */
-    function isJson($string) :bool
+    function isJson($string): bool
     {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
@@ -414,9 +416,9 @@ if (!function_exists('isJson')) {
 
 if (!function_exists('')) {
     /**
-    * @param string $csvFile Caminho do arquivo CSV
-    * @return string Delimitador do arquivo CSV
-    */
+     * @param string $csvFile Caminho do arquivo CSV
+     * @return string Delimitador do arquivo CSV
+     */
     function detectCsvDelimiter($csvFile): string
     {
         // Lista os delimitadores
@@ -435,7 +437,7 @@ if (!function_exists('')) {
     }
 }
 
-if(!function_exists('readCSV')){
+if (!function_exists('readCSV')) {
     /**
      * Função responsável por ler um arquivo CSV e retornar seu conteúdo
      *
@@ -445,7 +447,7 @@ if(!function_exists('readCSV')){
      * @access public
      * @return array
      */
-    function readCSV($filePath, $delimiter = '') :array
+    function readCSV($filePath, $delimiter = ''): array
     {
         try {
             if (!$delimiter) $delimiter = detectCsvDelimiter($filePath);
@@ -471,7 +473,7 @@ if(!function_exists('readCSV')){
     }
 }
 
-if(!function_exists('readExcel')){
+if (!function_exists('readExcel')) {
     /**
      * Função responsável por ler um arquivo XLSX ou XLS e retornar seu conteúdo
      *
@@ -481,7 +483,7 @@ if(!function_exists('readExcel')){
      * @access public
      * @return array
      */
-    function readExcel($filePath, $sheetName = '') :array
+    function readExcel($filePath, $sheetName = ''): array
     {
         try {
             $reader = IOFactory::load($filePath, 0, [IOFactory::READER_XLS, IOFactory::READER_XLSX]);
@@ -513,13 +515,13 @@ if (!function_exists('token64')) {
      * @access public
      * @return string
      */
-    function token64() :string
+    function token64(): string
     {
         $token = '';
         $hash = [1, 2, 3, 9, 8, 7, 6, 5, 4, 5, 8, 2, 9, 3, 6, 4, 7, 1, 3, 5, 7, 9, 5, 1];
         for ($i = 0; $i < 6; $i++) {
             $number = $hash[random_int(0, 23)];
-            $token = $token.$number;
+            $token = $token . $number;
         }
 
         return base64_encode($token);
@@ -537,14 +539,15 @@ if (!function_exists('incrementMonth')) {
      * @access public
      * @return string
      */
-    function incrementMonth(string $date, $day = null, int $months = 1) {
+    function incrementMonth(string $date, $day = null, int $months = 1)
+    {
         if (empty($day)) {
             $day = date('d', strtotime($date));
         }
 
         $year = date('Y', strtotime($date));
         $month = date('m', strtotime($date));
-        $newDate = date('Y-m-'.str_pad($day, 2, '0', STR_PAD_LEFT), strtotime($year.'-'.$month.'-01'." +$months months"));
+        $newDate = date('Y-m-' . str_pad($day, 2, '0', STR_PAD_LEFT), strtotime($year . '-' . $month . '-01' . " +$months months"));
 
         $diff = dateDiff(date('Y-m-d', strtotime($date)), date('Y-m-d', strtotime($newDate)));
 
@@ -553,13 +556,13 @@ if (!function_exists('incrementMonth')) {
         } else {
             $soma = (int)$month + $months;
             if ($soma > 12) {
-                $diffYears = (int)($soma/12);
+                $diffYears = (int)($soma / 12);
                 $year += $diffYears;
                 $month = $soma - ($diffYears * 12);
-                return date('Y-m-t', strtotime($year.'-'.str_pad($month, 2, '0', STR_PAD_LEFT).'-01'));
+                return date('Y-m-t', strtotime($year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-01'));
             }
             $month += $months;
-            return date('Y-m-t', strtotime($year.'-'.str_pad($month, 2, '0', STR_PAD_LEFT).'-01'));
+            return date('Y-m-t', strtotime($year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-01'));
         }
     }
 }
@@ -600,7 +603,7 @@ if (!function_exists('passwordForce')) {
             $pointHas = 2;
         }
 
-        return ($pointLength + $pointHas)/2;
+        return ($pointLength + $pointHas) / 2;
     }
 }
 
@@ -666,9 +669,9 @@ if (!function_exists('convertMinutes')) {
         $horas = intdiv($minutos, 60);
         $dias = intdiv($horas, 8);
         /**Pega as horas */
-        $horas = $horas%8;
+        $horas = $horas % 8;
         /**Pega os minutos */
-        $minutos = $minutos%60;
+        $minutos = $minutos % 60;
 
         return [
             'minutes' => $minutos,
@@ -684,12 +687,13 @@ if (!function_exists('calculateDuration')) {
      * @param string $duration Duração em horas a ser calculada (Obrigatório)
      * @param array $holidays Array com os feriados do ano/mês, as datas devem vir no formato Y-m-d (Opcional)
      */
-    function calculateDuration($date, $duration, $holidays = []) {
+    function calculateDuration($date, $duration, $holidays = [])
+    {
         $total_sec = hmsToSecond($duration);
         $total_dias = quorestDiv($total_sec, 28800);
         $data_final = $date;
         if (!empty($total_dias['resto'])) {
-            $data_final = date('Y-m-d H:i:s', strtotime($data_final)+$total_dias['resto']);
+            $data_final = date('Y-m-d H:i:s', strtotime($data_final) + $total_dias['resto']);
         }
 
         $dias = $total_dias['quociente'];
@@ -697,7 +701,7 @@ if (!function_exists('calculateDuration')) {
         $data_final = $result['data_final'];
         $dias = $result['dias'];
         for ($i = 1; $i <= $dias; $i++) {
-            $data_final = date('Y-m-d H:i:s', strtotime($data_final.' +1 day'));
+            $data_final = date('Y-m-d H:i:s', strtotime($data_final . ' +1 day'));
 
             $result = verifyHour($data_final, $dias);
             $data_final = $result['data_final'];
@@ -720,7 +724,8 @@ if (!function_exists('verifyHour')) {
     /**
      * Função responsável por verificar se a hora final calculada bate com o horário final do expediente
      */
-    function verifyHour($data_final, $dias) {
+    function verifyHour($data_final, $dias)
+    {
         // Tratando horas quebradas (que não são 8 horas completas)
         $horario_final = date('H:i:s', strtotime($data_final));
         $exp_inicio = date('H:i:s', strtotime('08:00'));
@@ -731,7 +736,7 @@ if (!function_exists('verifyHour')) {
         if ($horario_final > $exp_fim) {
             // depois do fim do expediente
             $diferenca = (new DateTime($exp_fim))->diff(new DateTime($horario_final));
-            $hora_inicio = date('H:i:s', strtotime('+'.$diferenca->h.' hour +'.$diferenca->i.' minutes +'.$diferenca->s.' seconds', strtotime($exp_inicio)));
+            $hora_inicio = date('H:i:s', strtotime('+' . $diferenca->h . ' hour +' . $diferenca->i . ' minutes +' . $diferenca->s . ' seconds', strtotime($exp_inicio)));
             $hora_inicio = strtotime($hora_inicio);
             $hour = date('H', $hora_inicio);
             $minute = date('i', $hora_inicio);
@@ -744,7 +749,7 @@ if (!function_exists('verifyHour')) {
         } elseif ($exp_pausa < $horario_final && $horario_final < $exp_volta) {
             // entre intervalo do almoço
             $diferenca = (new DateTime($horario_final))->diff(new DateTime($exp_pausa));
-            $hora_volta = date('H:i:s', strtotime('+'.$diferenca->h.' hour +'.$diferenca->i.' minutes +'.$diferenca->s.' seconds', strtotime($exp_volta)));
+            $hora_volta = date('H:i:s', strtotime('+' . $diferenca->h . ' hour +' . $diferenca->i . ' minutes +' . $diferenca->s . ' seconds', strtotime($exp_volta)));
             $hora_volta = strtotime($hora_volta);
             $hour = date('H', $hora_volta);
             $minute = date('i', $hora_volta);
@@ -756,7 +761,7 @@ if (!function_exists('verifyHour')) {
         } elseif ($horario_final < $exp_inicio) {
             // antes do inicio do expediente
             $diferenca = (new DateTime($exp_inicio))->diff(new DateTime($horario_final));
-            $hora_inicio = date('H:i:s', strtotime('+'.$diferenca->h.' hour +'.$diferenca->i.' minutes +'.$diferenca->s.' seconds', strtotime($exp_inicio)));
+            $hora_inicio = date('H:i:s', strtotime('+' . $diferenca->h . ' hour +' . $diferenca->i . ' minutes +' . $diferenca->s . ' seconds', strtotime($exp_inicio)));
             $hora_inicio = strtotime($hora_inicio);
             $hour = date('H', $hora_inicio);
             $minute = date('i', $hora_inicio);
@@ -783,7 +788,8 @@ if (!function_exists('hmsToSecond')) {
      * @access public
      * @return mixed
      */
-    function hmsToSecond($hora) {
+    function hmsToSecond($hora)
+    {
         if (!$hora) {
             return 0;
         } else {
@@ -804,13 +810,14 @@ if (!function_exists('quorestDiv')) {
      * @access public
      * @return mixed
      */
-    function quorestDiv($n, $d) {
+    function quorestDiv($n, $d)
+    {
         if (empty($n) || empty($d)) {
             return [];
         } else {
             return [
                 'quociente' => intdiv($n, $d),
-                'resto' => $n%$d
+                'resto' => $n % $d
             ];
         }
     }
@@ -823,7 +830,7 @@ if (!function_exists('generateCodeNumeric')) {
      * @param int $length Tamanho do código gerado
      * @return string
      */
-    function generateCodeNumeric(int $length) :string
+    function generateCodeNumeric(int $length): string
     {
         $numero = '';
         for ($x = 0; $x < $length; $x++) {
@@ -839,9 +846,9 @@ if (!function_exists('generateId')) {
      *
      * @return string
      */
-    function generateId() :string
+    function generateId(): string
     {
-        return substr(str_replace(',', '', number_format(microtime(true)*1000000, 0)), 0, 15);
+        return substr(str_replace(',', '', number_format(microtime(true) * 1000000, 0)), 0, 15);
     }
 }
 
@@ -859,9 +866,9 @@ if (!function_exists('generatePassword')) {
         $letrasMinusculas = explode(' ', 'a b c d e f g h i j k l m n o p q r s t u v w x y z');
         $letrasMaiusculas = explode(' ', 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z');
         $simbolos = explode(' ', '! @ # $ % &');
-        $numeros = [0,1,2,3,4,5,6,7,8,9];
+        $numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-        switch($contain) {
+        switch ($contain) {
             case 1:
                 $hash = [$numeros];
                 break;
@@ -872,8 +879,8 @@ if (!function_exists('generatePassword')) {
                 $hash = [$letrasMinusculas, $numeros, $simbolos, $letrasMaiusculas];
                 break;
             default:
-                $hash = [ $letrasMinusculas, $numeros, $letrasMaiusculas ];
-            break;
+                $hash = [$letrasMinusculas, $numeros, $letrasMaiusculas];
+                break;
         }
 
 
@@ -895,20 +902,21 @@ if (!function_exists('generatePassword')) {
  * @return string
  */
 if (!function_exists('monthNameBr')) {
-    function monthNameBr($month, $abbreviated = false) {
+    function monthNameBr($month, $abbreviated = false)
+    {
         switch ($month) {
             case "01":
                 $month = 'Janeiro';
-            break;
+                break;
             case "02":
                 $month = 'Fevereiro';
-                 break;
+                break;
             case "03":
                 $month = 'Março';
-                 break;
+                break;
             case "04":
                 $month = 'Abril';
-                 break;
+                break;
             case "05":
                 $month = 'Maio';
                 break;
@@ -917,7 +925,7 @@ if (!function_exists('monthNameBr')) {
                 break;
             case "07":
                 $month = 'Julho';
-                 break;
+                break;
             case "08":
                 $month = 'Agosto';
                 break;
@@ -929,10 +937,10 @@ if (!function_exists('monthNameBr')) {
                 break;
             case "11":
                 $month = 'Novembro';
-                 break;
+                break;
             case "12":
                 $month = 'Dezembro';
-                 break;
+                break;
         }
 
         if ($abbreviated) {
@@ -951,10 +959,11 @@ if (!function_exists('incrementBussinessDay')) {
      * @param string $dias Quantidade de dias a ser incrementado (Obrigatório)
      * @param array $holidays Array com os feriados do ano/mês, as datas devem vir no formato Y-m-d (Opcional)
      */
-    function incrementBussinessDay($date, $dias, $holidays = []) {;
+    function incrementBussinessDay($date, $dias, $holidays = [])
+    {;
         $data_final = $date;
         for ($i = 1; $i <= $dias; $i++) {
-            $data_final = date('Y-m-d', strtotime($data_final.' +1 day'));
+            $data_final = date('Y-m-d', strtotime($data_final . ' +1 day'));
 
             // Tratando feriados, sabados e domingos
             $checkDay = date("d-m", strtotime($data_final));
@@ -977,10 +986,11 @@ if (!function_exists('decrementBussinessDay')) {
      * @param string $dias Quantidade de dias a ser decrementado (Obrigatório)
      * @param array $holidays Array com os feriados do ano/mês, as datas devem vir no formato Y-m-d (Opcional)
      */
-    function decrementBussinessDay($date, $dias, $holidays = []) {;
+    function decrementBussinessDay($date, $dias, $holidays = [])
+    {;
         $data_final = $date;
         for ($i = 1; $i <= $dias; $i++) {
-            $data_final = date('Y-m-d', strtotime($data_final.' -1 day'));
+            $data_final = date('Y-m-d', strtotime($data_final . ' -1 day'));
 
             // Tratando feriados, sabados e domingos
             $checkDay = date("d-m", strtotime($data_final));
@@ -1004,7 +1014,7 @@ if (!function_exists('isLeapYear')) {
      * @access public
      * @return bool
      */
-    function isLeapYear($year = 0) :bool
+    function isLeapYear($year = 0): bool
     {
         $div = $year % 4;
 
@@ -1033,7 +1043,7 @@ if (!function_exists('imageCoordinates')) {
      * @access public
      * @return array
      */
-    function imageCoordinates(string $path) :array
+    function imageCoordinates(string $path): array
     {
         $fopen = fopen($path, 'rb');
         $exif = exif_read_data($fopen);
@@ -1059,12 +1069,12 @@ if (!function_exists('getCoordinates')) {
      */
     function getCoordinates($coordenada, $hemisferio)
     {
-        for ($i = 0; $i < 3; $i ++){
+        for ($i = 0; $i < 3; $i++) {
             $part = explode('/', $coordenada[$i]);
-            if (count ($part) == 1) {
-                $coordenada [$i] = $part[0];
+            if (count($part) == 1) {
+                $coordenada[$i] = $part[0];
             } else if (count($part) == 2) {
-                $coordenada[$i] = floatval($part[0])/ floatval($part[1]);
+                $coordenada[$i] = floatval($part[0]) / floatval($part[1]);
             } else {
                 $coordenada[$i] = 0;
             }
@@ -1085,10 +1095,10 @@ if (!function_exists('calculaVencimentoDigitableLine')) {
      * @access public
      * @return string
      */
-    function calculaVencimentoDigitableLine($days) :string
+    function calculaVencimentoDigitableLine($days): string
     {
         $baseBACEN = strtotime('1997-10-07');
-        return date('Y-m-d', ($baseBACEN + (+$days+1) * 24 * 3600));
+        return date('Y-m-d', ($baseBACEN + (+$days + 1) * 24 * 3600));
     }
 }
 
@@ -1100,8 +1110,9 @@ if (!function_exists('sumString')) {
      *
      * @access public
      * @return int
-    */
-    function sumString(int $number) {
+     */
+    function sumString(int $number)
+    {
         $data = str_split($number);
         $soma = 0;
 
@@ -1111,7 +1122,6 @@ if (!function_exists('sumString')) {
 
         return $soma <= 9 ? $soma : sumString($number);
     }
-
 }
 
 
@@ -1124,11 +1134,12 @@ if (!function_exists('calculaDACMod10')) {
      * @access public
      * @return int
      */
-    function calculaDACMod10(string $input) {
+    function calculaDACMod10(string $input)
+    {
         $data = str_split($input);
         $data = array_reverse($data);
         $soma = 0;
-        foreach($data as $key => $item) {
+        foreach ($data as $key => $item) {
             $multiplicador = ($key % 2 ? 1 : 2);
             $result = $item * $multiplicador;
 
@@ -1160,12 +1171,13 @@ if (!function_exists('calculaDACMod11')) {
      * @access public
      * @return int
      */
-    function calculaDACMod11(string $input) {
+    function calculaDACMod11(string $input)
+    {
         $data = str_split($input);
         $data = array_reverse($data);
         $multiplicador = 2;
         $soma = 0;
-        foreach($data as $item) {
+        foreach ($data as $item) {
             $result = $item * $multiplicador;
             if ($multiplicador < 9) {
                 $multiplicador++;
@@ -1203,7 +1215,7 @@ if (!function_exists('readDigitableLine')) {
      *      'bank_code' => Código do banco de destino
      * ]
      */
-    function readDigitableLine(string $digitable_line, bool $isBarcode) :array
+    function readDigitableLine(string $digitable_line, bool $isBarcode): array
     {
         if ($isBarcode) {
             $digitable_line = formatBarcodeToDigitableLine($digitable_line);
@@ -1239,13 +1251,13 @@ if (!function_exists('readDigitableLine')) {
             $digitoB = (int)substr($digitable_line, 20, 1);
             $digitoC = (int)substr($digitable_line, 31, 1);
             $digitoGeral = (int)substr($digitable_line, 32, 1);
-            $codBarra = substr($digitable_line, 0, 4).$digitoGeral.$campoD.substr($campoA, 4).$campoB.$campoC;
+            $codBarra = substr($digitable_line, 0, 4) . $digitoGeral . $campoD . substr($campoA, 4) . $campoB . $campoC;
 
             if (substr($campoD, 0, 4) != 0) {
                 $vencimento = calculaVencimentoDigitableLine(substr($campoD, 0, 4));
             }
-            if ((float)substr($campoD, 4, 8).'.'.substr($campoD, 9) > 0) {
-                $valor = substr($campoD, 4, 8).'.'.substr($campoD, 12);
+            if ((float)substr($campoD, 4, 8) . '.' . substr($campoD, 9) > 0) {
+                $valor = substr($campoD, 4, 8) . '.' . substr($campoD, 12);
             }
         } else {
             $campoA = substr($digitable_line, 0, 11);
@@ -1257,17 +1269,17 @@ if (!function_exists('readDigitableLine')) {
             $digitoC = (int)substr($digitable_line, 35, 1);
             $digitoD = (int)substr($digitable_line, 47, 1);
             $digitoGeral = (int)substr($digitable_line, 3, 1);
-            $codBarra = $campoA.$campoB.$campoC.$campoD;
+            $codBarra = $campoA . $campoB . $campoC . $campoD;
 
             if (substr($campoD, 0, 4) != 0) {
                 $vencimento = calculaVencimentoDigitableLine(substr($campoD, 0, 4));
             }
-            if ((float)(substr($campoD, 4, 8).'.'.substr($campoD, 9)) > 0) {
-                $valor = substr($codBarra, 4, 9).'.'.substr($codBarra, 13, 2);
+            if ((float)(substr($campoD, 4, 8) . '.' . substr($campoD, 9)) > 0) {
+                $valor = substr($codBarra, 4, 9) . '.' . substr($codBarra, 13, 2);
             }
         }
 
-        if ($digitoA != calculaDACMod10($campoA) || $digitoB != calculaDACMod10($campoB) || $digitoC != calculaDACMod10($campoC) || ($type === 'bancario' && $digitoGeral != calculaDACMod11(substr($digitable_line, 0, 4).$campoD.substr($campoA, 4).$campoB.$campoC))) {
+        if ($digitoA != calculaDACMod10($campoA) || $digitoB != calculaDACMod10($campoB) || $digitoC != calculaDACMod10($campoC) || ($type === 'bancario' && $digitoGeral != calculaDACMod11(substr($digitable_line, 0, 4) . $campoD . substr($campoA, 4) . $campoB . $campoC))) {
             return [
                 'status' => false,
                 'error' => 'Número do boleto é inválido!'
@@ -1275,7 +1287,7 @@ if (!function_exists('readDigitableLine')) {
         }
 
 
-        if ($type === 'consumo' && ((($digitoD != calculaDACMod10($campoD) || in_array(substr($campoA, 2, 1), ['6', '7'])) && $digitoGeral != calculaDACMod10(substr($campoA, 0, 3).substr($campoA, 4).$campoB.$campoC.$campoD)) || (in_array(substr($campoA, 2, 1), ['8', '9']) && $digitoGeral != calculaDACMod11(substr($campoA, 0, 3).substr($campoA, 4).$campoB.$campoC.$campoD)))) {
+        if ($type === 'consumo' && ((($digitoD != calculaDACMod10($campoD) || in_array(substr($campoA, 2, 1), ['6', '7'])) && $digitoGeral != calculaDACMod10(substr($campoA, 0, 3) . substr($campoA, 4) . $campoB . $campoC . $campoD)) || (in_array(substr($campoA, 2, 1), ['8', '9']) && $digitoGeral != calculaDACMod11(substr($campoA, 0, 3) . substr($campoA, 4) . $campoB . $campoC . $campoD)))) {
             return [
                 'status' => false,
                 'error' => 'Número do boleto é inválido!'
@@ -1317,7 +1329,7 @@ if (!function_exists('formatBarcodeToDigitableLine')) {
 
         if (substr($barcode, 0, 1) == 8) {
             $type = 'consumo';
-        } else{
+        } else {
             $type = 'bancario';
         }
 
@@ -1325,7 +1337,7 @@ if (!function_exists('formatBarcodeToDigitableLine')) {
         $digitoA = $digitoB = $digitoC = $digitoD = $digitoGeral = 0;
 
         if ($type === 'bancario') {
-            $campoA = substr($barcode, 0, 4).substr($barcode, 19, 5);
+            $campoA = substr($barcode, 0, 4) . substr($barcode, 19, 5);
             $campoB = substr($barcode, 24, 10);
             $campoC = substr($barcode, 34);
             $campoD = substr($barcode, 5, 14);
@@ -1335,7 +1347,7 @@ if (!function_exists('formatBarcodeToDigitableLine')) {
             $digitoB = calculaDACMod10($campoB);
             $digitoC = calculaDACMod10($campoC);
 
-            $digitable_line = $campoA.$digitoA.$campoB.$digitoB.$campoC.$digitoC.$digitoGeral.$campoD;
+            $digitable_line = $campoA . $digitoA . $campoB . $digitoB . $campoC . $digitoC . $digitoGeral . $campoD;
         } else {
             $campoA = substr($barcode, 0, 11);
             $campoB = substr($barcode, 11, 11);
@@ -1347,7 +1359,7 @@ if (!function_exists('formatBarcodeToDigitableLine')) {
             $digitoC = calculaDACMod10($campoC);
             $digitoD = calculaDACMod10($campoD);
 
-            $digitable_line = $campoA.$digitoA.$campoB.$digitoB.$campoC.$digitoC.$campoD.$digitoD;
+            $digitable_line = $campoA . $digitoA . $campoB . $digitoB . $campoC . $digitoC . $campoD . $digitoD;
         }
 
         return $digitable_line;
@@ -1367,7 +1379,7 @@ if (!function_exists('formatJsonString')) {
     function formatJsonString($data, int $step = 1, $br = "\r\n")
     {
         if (is_string($data) && !isJson($data) || (!is_string($data) && !is_object($data) && !is_array($data))) {
-            return '"'.$data.'"';
+            return '"' . $data . '"';
         }
 
         if (!is_string($data)) {
@@ -1381,14 +1393,14 @@ if (!function_exists('formatJsonString')) {
         if (is_object($dataObject)) {
             $dataArray = json_decode(json_encode($dataObject), true);
 
-            $return .= "{".$br;
+            $return .= "{" . $br;
             $inputs = [];
             foreach ($dataArray as $key => $value) {
                 $input = '';
                 $input .= addSpacesString($input, $spaces);
 
                 if (is_array($dataObject->$key) || is_object($dataObject->$key)) {
-                    $input .= '"'.$key.'": '.formatJsonString($value, ($step + 1), $br);
+                    $input .= '"' . $key . '": ' . formatJsonString($value, ($step + 1), $br);
                     $inputs[] = $input;
                     continue;
                 }
@@ -1401,21 +1413,21 @@ if (!function_exists('formatJsonString')) {
                     } else if ((float)$value == $value) {
                         $value = (float)$value;
                     } else {
-                        $value = '"'.$value.'"';
+                        $value = '"' . $value . '"';
                     }
                 } else {
                     $value = 'null';
                 }
 
-                $input .= '"'.$key.'": '.$value;
+                $input .= '"' . $key . '": ' . $value;
                 $inputs[] = $input;
             }
-            $return .= implode(','.$br, $inputs);
+            $return .= implode(',' . $br, $inputs);
             $return .= $br;
             $return = addSpacesString($return, ($spaces - 4));
             $return .= "}";
         } else if (is_array($dataObject)) {
-            $return .= "[".$br;
+            $return .= "[" . $br;
             $inputs = [];
             foreach ($dataObject as $value) {
                 $input = '';
@@ -1423,7 +1435,7 @@ if (!function_exists('formatJsonString')) {
                 $input .= formatJsonString($value, ($step + 1), $br);
                 $inputs[] = $input;
             }
-            $return .= implode(','.$br, $inputs);
+            $return .= implode(',' . $br, $inputs);
             $return .= $br;
             $return = addSpacesString($return, ($spaces - 4));
             $return .= "]";
