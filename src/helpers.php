@@ -508,6 +508,31 @@ if (!function_exists('readExcel')) {
     }
 }
 
+if (!function_exists('joinExcelSheets')) {
+    /**
+     * Função responsável por mesclar as linhas de todas a planilhas em um único array
+     *
+     * @param array $sheets Dados brutos extraídos do arquivo
+     * @param bool $hasHeader Indica se o arquivo possuí cabeçalho (opcional)
+     *
+     * @access public
+     * @return array
+     */
+    function joinExcelSheets(array $sheets, bool $hasHeader = true): array
+    {
+        $header = $hasHeader ? array_values($sheets)[0][0] : [];
+        $rows = array_merge([], [$header]);
+
+        foreach ($sheets as $sheetRows) {
+            if ($hasHeader) array_shift($sheetRows);
+
+            $rows = array_merge($rows, $sheetRows);
+        }
+
+        return $rows;
+    }
+}
+
 if (!function_exists('token64')) {
     /**
      * Função responsável por gerar um token aleatório em base64
